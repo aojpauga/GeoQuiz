@@ -1,7 +1,9 @@
 package com.apauga.geoquiz
 
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
@@ -9,8 +11,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 
-class MainActivity : AppCompatActivity() {
+private const val Tag = "MainActivity"
 
+class MainActivity : AppCompatActivity() {
 
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(Tag, "onCreate(Bundle?) called")
         setContentView(R.layout.activity_main)
 
         trueButton = findViewById(R.id.true_button)
@@ -68,6 +72,31 @@ class MainActivity : AppCompatActivity() {
         }
 
         updateQuestion()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(Tag,"onStart() called" )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(Tag, "onResume() called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(Tag, "onPause() called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(Tag, "onStop() called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(Tag,"onDestroy() called")
     }
 
     private fun updateQuestion(){
