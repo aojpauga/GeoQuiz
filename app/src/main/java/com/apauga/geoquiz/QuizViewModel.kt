@@ -18,7 +18,7 @@ class QuizViewModel : ViewModel(){
     private val questionBankReadOnly = questionBank
     private val reversedQuestionBack = questionBankReadOnly.asReversed()
 
-    private var currentIndex = 0
+    var currentIndex = 0
 
     val currentQuestionAnswer: Boolean
         get() = questionBank[currentIndex].answer
