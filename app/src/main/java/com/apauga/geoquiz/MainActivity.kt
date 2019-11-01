@@ -1,5 +1,6 @@
 package com.apauga.geoquiz
 
+import android.content.Intent
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
+    private lateinit var cheatButton: Button
     private lateinit var nextButton: ImageButton
     private lateinit var backButton: ImageButton
     private lateinit var questionTextView: TextView
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
+        cheatButton = findViewById(R.id.cheat_button)
         nextButton = findViewById(R.id.next_button)
         backButton = findViewById(R.id.back_button)
         questionTextView = findViewById(R.id.question_text_view)
@@ -57,6 +60,12 @@ class MainActivity : AppCompatActivity() {
             falseButton.isClickable = false
             trueButton.isEnabled = false
             trueButton.isClickable = false
+        }
+
+        cheatButton.setOnClickListener {
+            val answerIsTrue = quizViewModel.currentQuestionAnswer
+            val intent = CheatActivity.newIntent(this@MainActivity, answerIsTrue)
+            startActivity(intent)
         }
 
         nextButton.setOnClickListener {
